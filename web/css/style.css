@@ -1,0 +1,9 @@
+form.regist { font-size: 16px; }
+form.regist div { clear: left; margin-bottom: 10px; }
+form.regist label { float: left; margin-right: 10px; text-align: right; width: 100px; font-weight: bold; vertical-align: top; padding-top: 10px; }
+form.regist input[type="text"],
+form.regist input[type="email"]
+{ width: 500px; line-height: 26px; font-size: 20px; min-height: 26px; }
+form.regist textarea { width: 500px; height: 150px; line-height: 26px; font-size: 20px; }
+form.regist input[type="submit"] { margin-left: 110px; width: 508px; line-height: 26px; font-size: 20px; min-height: 26px; }
+form.regist ul li { color: #ff0000; margin-bottom: 5px; }

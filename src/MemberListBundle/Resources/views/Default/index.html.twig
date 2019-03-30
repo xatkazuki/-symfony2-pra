@@ -1,1 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %} memberRegist App{% endblock %}</title>
+    {% block stylesheets %}
+        <link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
+        <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" />
+    {% endblock %}
+</head>
+
+<body>
+<div class ="test">
+
+    {#<form class="regist" method="post">#}
+
+        {#{{ form_start(form) }}#}
+        {#{{ form_widget(form) }}#}
+        {#{{ form_end(form) }}#}
+        {#<div>#}
+            {#{{ form_widget(form.save, {"attr":{"class":"btn btn-primary"}}) }}#}
+        {#</div>#}
+    {#</form>#}
+
+    <form class="regist" method="post">
+
+
+        {{ form_errors(form) }}
+
+        {{ form_row(form.name) }}
+        {{ form_row(form.furigana) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.github) }}
+        {{ form_row(form.createdAt) }}
+
+
+        {#{{ form_row(form.save, {"attr":{"class":"btn btn-primary"}}) }}#}
+        {{ form_rest(form) }}
+        <div>
+            {{ form_widget(form.save, {"attr":{"class":"btn btn-primary"}}) }}
+        </div>
+    </form>
+
+    {{ message }}
+</div>
+</body>
+
+</html>
+
 Hello World!
+
