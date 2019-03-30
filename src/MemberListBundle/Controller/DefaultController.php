@@ -71,16 +71,16 @@ class DefaultController extends Controller
     }
 
   /**
-   * @Route("/", name="show_regist", methods={"GET","POST"})
+   * @Route("/show", name="show_regist", methods={"GET","POST"})
    */
-  public function showAction($memberList)
+  public function showAction()
   {
 
     $memberList = $this->getDoctrine()
       ->getRepository(Regist::class)
       ->findAll();
 
-    echo var_dump($memberList);
+//    echo var_dump($memberList);
 
     return $this->render('MemberListBundle:Default:show.html.twig',
       array(

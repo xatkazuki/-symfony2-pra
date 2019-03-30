@@ -11,25 +11,8 @@
 </head>
 
 <body>
-<div class ="test">
-
-    <div>
-        {% for memberitem in memberlist %}
-            <div>{{ memberitem.id }}</div>
-            <div>{{ memberitem.name }}</div>
-            <div>{{ memberitem.furigana }}</div>
-            <div>{{ memberitem.email }}</div>
-            <div>{{ memberitem.github }}</div>
-
-            <hr>
-
-        {% endfor %}
-    </div>
-
-</div>
+{% block body %}{% endblock %}
 </body>
-
 </html>
 
-Hello World!
 

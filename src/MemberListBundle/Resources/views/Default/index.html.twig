@@ -9,19 +9,11 @@
         <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" />
     {% endblock %}
 </head>
+{#{% extends "layout.html.twig" %}#}
 
+{#{% block body %}#}
 <body>
 <div class ="test">
-
-    {#<form class="regist" method="post">#}
-
-        {#{{ form_start(form) }}#}
-        {#{{ form_widget(form) }}#}
-        {#{{ form_end(form) }}#}
-        {#<div>#}
-            {#{{ form_widget(form.save, {"attr":{"class":"btn btn-primary"}}) }}#}
-        {#</div>#}
-    {#</form>#}
 
     <form class="regist" method="post">
 
@@ -45,8 +37,7 @@
     {{ message }}
 </div>
 </body>
-
+{#{% endblock %}#}
 </html>
 
-Hello World!
 
