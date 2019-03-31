@@ -12,11 +12,12 @@
 
 <body>
 <div class ="test">
+
     <form action="{{ path('user_regist')}}" class="regist" method="post">
 
 
         {{ form_errors(form) }}
-        {#{{ form_row(form.id) }}#}
+        {{ form_row(form.id) }}
         {{ form_row(form.email) }}
         {{ form_rest(form) }}
         <div>
@@ -25,6 +26,7 @@
     </form>
 
 
+{#{% if memberlist %}#}
     <div>
         {% for memberitem in memberlist %}
             <div>{{ memberitem.id }}</div>
@@ -37,11 +39,11 @@
 
         {% endfor %}
     </div>
-
+{#{% endif %}#}
 </div>
 </body>
 
 </html>
 
-Hello World!
+user画面
 

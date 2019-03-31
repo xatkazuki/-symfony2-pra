@@ -73,7 +73,17 @@ class Regist
     {
         return $this->id;
     }
+    /**
+     * Set id
+     * @param integer $id
+     * @return Regist
+     */
+    public function setId($id)
+    {
+      $this->id = $id;
 
+      return $this;
+    }
     /**
      * Set name
      *
