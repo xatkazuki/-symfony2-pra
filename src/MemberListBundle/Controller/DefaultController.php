@@ -89,15 +89,46 @@ class DefaultController extends Controller
       ->getRepository(Regist::class)
       ->findAll();
 
-
+    $message = "";
     return $this->render('MemberListBundle:Default:show.html.twig',
       array(
         'form' => $form->createView(),
-        'memberlist' => $memberList,)
+        'memberlist' => $memberList,
+        'msg' => $message)
     );
   }
 
+  /**
+   * @Route("/serch", name="serch_regist", methods={"GET","POST"})
+   */
+  public function serchAction(Request $request)
+  {
 
+    $regist = new Regist();
+
+    $form = $this->createFormBuilder($regist)
+//      ->add('id', IntegerType::class)
+      ->add('email', EmailType::class)
+      ->add('serch', SubmitType::class, array('label' => 'serch'))
+      ->getForm();
+
+    $memberList = [];
+
+    $form->handleRequest($request);
+
+    $memberList = $this->getDoctrine()->getManager()
+      ->getRepository(Regist::class)
+      ->findBy(
+        array(
+          'email' => $regist->getEmail()
+        ));
+
+
+    return $this->render('MemberListBundle:Default:serch.html.twig',
+      array(
+        'form' => $form->createView(),
+      ));
+  }
 
   /**
    * @Route("/user", name="user_regist", methods={"GET","POST"})
@@ -109,11 +140,11 @@ class DefaultController extends Controller
 
     $form = $this->createFormBuilder($regist)
       ->add('id', IntegerType::class)
-      ->add('email',  EmailType::class)
-      ->add('serch', SubmitType::class, array('label' => 'serch'))
+      ->add('email', EmailType::class)
+      ->add('serch', SubmitType::class, array('label' => 'delete'))
       ->getForm();
 
-    $memberList =[];
+    $memberList = [];
 
     $form->handleRequest($request);
 
@@ -121,64 +152,67 @@ class DefaultController extends Controller
       ->getRepository(Regist::class)
       ->findBy(
         array(
-          'email' => $regist -> getEmail()
-//          'id' => $regist -> getId())
-      ));
+          'email' => $regist->getEmail()
+        ));
 
 
-//    if('POST' === $request->getMethod()&& $request->request->get('_token')) {
-//
-//      $regist = new Regist();
-//
-//      $form->handleRequest($request);
-//      $regist -> setEmail($form->get('email')->getData());
-//      $data = $request->request->get($regist->getEmail());
-//
-//      $mbl =$this->getDoctrine()->getManager()
-//       ->getRepository(Regist::class)
-//       ->findBy(
-//         array('email' => $regist -> getEmail(),
-//           'id' => $regist -> getId())
-//       );
-//
-//      echo var_dump(
-//        $regist -> getEmail()
-//      );
-//      return
-//        $this->redirect($this->generateUrl('show_regist'),
-//          array('memberlist' => $mbl)
-//        );
-//    }else{
-//      echo "message送信前です";
-//    }
+      return $this->render('MemberListBundle:Default:user.html.twig',
+        array(
+          'form' => $form->createView(),
+          'memberlist' => $memberList
 
-    return $this->render('MemberListBundle:Default:user.html.twig',
-      array(
-        'form' => $form->createView(),
-        'memberlist' => $memberList
-
-      ));
-  }
+        ));
+    }
+//  }
 
   /**
-   * @Route("/delete", name="delete_regist", methods={"DELETE"})
+   * @Route("/delete", name="delete_regist", methods={"GET","POST","DELETE"})
    */
-  public function deleteAction(Request $request, Regist $regist)
+  public function deleteAction(Request $request)
   {
 
-    $memberList = $this->getDoctrine()
-      ->getRepository(Regist::class)
-      ->findBy(array('name' => 'takabayashi'));
-//      ->findAll();
+    $regist = new Regist();
 
-    $entityManager = $this->getDoctrine()->getManager();
-    $entityManager->remove($regist);
-    $entityManager->flush();
-//    echo var_dump($memberList);
+//    $form = $this->createFormBuilder($regist)
+//      ->add('id', IntegerType::class)
+//      ->add('email', EmailType::class)
+//      ->add('serch', SubmitType::class, array('label' => 'serch'))
+//      ->getForm();
+
+    $memberList = [];
+
+//    $form->handleRequest($request);
+
+
+
+    $em = $this->getDoctrine()->getManager();
+
+    $del_items=  $this->getDoctrine()
+      ->getRepository(Regist::class)
+      ->findBy(
+        array(
+          'email' => $regist->getEmail(),
+          'id' => $regist->getId()
+
+        ));
+    foreach ($del_items as $del_item) {
+      $em->remove($del_item);
+    }
+    $em  -> flush();
+
+    $message ="登録情報削除しました(To delete your information is Suscessfully.)";
+
+
 
     return $this->render('MemberListBundle:Default:delete.html.twig',
       array(
-        'memberlist' => $memberList,)
-    );
+//        'form' => $form->createView(),
+        'memberlist' => $del_items,
+        'message' => $message
+
+
+      ));
+
+
   }
 }

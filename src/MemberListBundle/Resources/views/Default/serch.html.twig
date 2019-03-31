@@ -13,11 +13,10 @@
 <body>
 <div class ="test">
 
-    <form action="{{ path('delete_regist')}}" class="regist" method="post">
+    <form action="{{ path('user_regist')}}" class="regist" method="post">
       {#<form class="regist" method="post">#}
-
         {{ form_errors(form) }}
-        {{ form_row(form.id) }}
+        {#{{ form_row(form.id) }}#}
         {{ form_row(form.email) }}
         {{ form_rest(form) }}
         <div>
@@ -26,24 +25,29 @@
         {#<div>#}
             {#{{ form_row(form.serch, {"attr":{"class":"btn btn-primary"}}) }}#}
         {#</div>#}
+
+
     </form>
 
-        {% for memberitem in memberlist %}
-            <div>{{ memberitem.id }}</div>
-            <div>{{ memberitem.name }}</div>
-            <div>{{ memberitem.furigana }}</div>
-            <div>{{ memberitem.email }}</div>
-            <div>{{ memberitem.github }}</div>
-            <div>
-                あああ
-            </div>
-            {{ form_errors(form) }}
 
-            {{ form_rest(form) }}
+{#{% if memberlist %}#}
+    {#<form action="{{ path('user_regist')}}" class="regist" method="post">#}
+        {#{% for memberitem in memberlist %}#}
+            {#<div>{{ memberitem.id }}</div>#}
+            {#<div>{{ memberitem.name }}</div>#}
+            {#<div>{{ memberitem.furigana }}</div>#}
+            {#<div>{{ memberitem.email }}</div>#}
+            {#<div>{{ memberitem.github }}</div>#}
+            {#<div>#}
+                {#あああ#}
+            {#</div>#}
+            {#{{ form_errors(form) }}#}
 
-            <hr>
-        {% endfor %}
+            {#{{ form_rest(form) }}#}
 
+            {#<hr>#}
+        {#{% endfor %}#}
+{#{% endif %}#}
 </div>
 </body>
 

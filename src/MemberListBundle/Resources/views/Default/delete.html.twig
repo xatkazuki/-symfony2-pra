@@ -13,20 +13,17 @@
 <body>
 <div class ="test">
 
-    <form action="{{ path('delete_regist')}}" class="regist" method="post">
-      {#<form class="regist" method="post">#}
-
-        {{ form_errors(form) }}
-        {{ form_row(form.id) }}
-        {{ form_row(form.email) }}
-        {{ form_rest(form) }}
-        <div>
-            {{ form_widget(form.serch, {"attr":{"class":"btn btn-primary"}}) }}
-        </div>
+    {#<form action="{{ path('delete_regist')}}" class="regist" method="post">#}
+        {#{{ form_errors(form) }}#}
+        {#{{ form_row(form.id) }}#}
+        {#{{ form_row(form.email) }}#}
+        {#{{ form_rest(form) }}#}
         {#<div>#}
             {#{{ form_row(form.serch, {"attr":{"class":"btn btn-primary"}}) }}#}
         {#</div>#}
-    </form>
+
+    {#</form>#}
+
 
         {% for memberitem in memberlist %}
             <div>{{ memberitem.id }}</div>
@@ -37,17 +34,22 @@
             <div>
                 あああ
             </div>
-            {{ form_errors(form) }}
-
-            {{ form_rest(form) }}
 
             <hr>
         {% endfor %}
+    <div>
+        {{ message }}
+    </div>
 
+    <div>
+        <button>
+            <a href="{{ path('show_regist')}}">一覧へ戻る</a>
+        </button>
+    </div>
 </div>
 </body>
 
 </html>
 
-user画面
+delete画面
 
