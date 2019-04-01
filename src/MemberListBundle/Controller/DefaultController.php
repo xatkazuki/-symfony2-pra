@@ -173,12 +173,6 @@ class DefaultController extends Controller
 
     $regist = new Regist();
 
-//    $form = $this->createFormBuilder($regist)
-//      ->add('id', IntegerType::class)
-//      ->add('email', EmailType::class)
-//      ->add('serch', SubmitType::class, array('label' => 'serch'))
-//      ->getForm();
-
     $memberList = [];
 
 //    $form->handleRequest($request);
